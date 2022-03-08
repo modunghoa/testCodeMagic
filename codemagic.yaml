@@ -5,3 +5,7 @@ workflows:
             - ./gradlew assembleDebug
         artifacts:
             - build/outputs/**/**/*.apk
+        publishing:
+            email:
+                recipients:
+                    - nguyentienvinh03011995@gmail.com
