@@ -1,11 +1,28 @@
+# Check out https://docs.codemagic.io/getting-started/yaml/for more information
+
 workflows:
-    android-app:
-        name: Android App
+    native-android:
+        name: Native Android
+        triggering:
+            events:
+                - push
+                - tag
+                - pull_request
+            branch_patterns:
+                - pattern: main
+                  include: true
+                  source: true
         scripts:
-            - ./gradlew assembleDebug
+            - name: Build Android debug APK
+              script: |
+                ./gradlew assembleDebug 
         artifacts:
-            - build/outputs/**/**/*.apk
+            - app/build/outputs/**/*.apk
         publishing:
             email:
                 recipients:
                     - nguyentienvinh03011995@gmail.com
+                    - tienvinh1st@gmail.com
+                notify:
+                  success: true
+                  failure: false
